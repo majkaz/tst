@@ -13,7 +13,7 @@ then
 	# strip to command only
 	tail -n $NUMBER_OF_LINES_BACK ~/.zsh_history | 
 	tac | sed "1d" | tac |
-	sed 's/.\+;//' >> $SCRIPT_NAME.sh
+	sed 's/.\+;//;s/| /\\ \n    | /g' >> $SCRIPT_NAME.sh
 else
 	tail -n $NUMBER_OF_LINES_BACK ~/.bash_history |
 	tac | sed "1d" | tac >> $SCRIPT_NAME.sh
