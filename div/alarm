@@ -2,11 +2,21 @@
 {
 cykl=$1
 cas=$2
-for (( c=1; c<=$cykl; c++ ))
-do  echo "a "$cas" ("$c"/"$cykl")" > ~/alarmtmp
-    sleep $cas
-    madplay -Q -a-20 -r$c C:/PRG/xdwl/pin.mp3
+hdn=${cas%%[^0-9]*}
+cs=${cas##*[0-9]}
+for (( c=1; c<$cykl; c++ ))
+do  for (( b=1; b<=$hdn; b++ ))
+		do echo $b"/"$cas" \ue003 "$c"/"$cykl > ~/alarmtmp
+			sleep 1$cs
+		done
+	dn=
+    madplay -Q -a-20 -r$c ~/bin/pin.mp3
 done
-echo "a     " > ~/alarmtmp
+for (( b=1; b<=$hdn; b++ ))
+	do echo $b"/"$cas" \ue005 "$c"/"$cykl > ~/alarmtmp
+		sleep 1$cs
+	done
+madplay -Q -a-20 -r$c ~/bin/pin.mp3
+echo " \ue002 " > ~/alarmtmp
 
 } &
