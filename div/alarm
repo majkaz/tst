@@ -1,0 +1,11 @@
+#!/bin/bash
+cykl=$1
+cas=$2
+echo "a: "$cas > ~/alarmtmp
+for (( c=1; c<=$cykl; c++ ))
+do sleep $cas
+    cs=$((c-1))
+    echo "a: "$cas"("$cs")" > ~/alarmtmp
+    madplay -Q -a-20 -r$c C:/PRG/xdwl/pin.mp3
+done
+echo "a:  " > ~/alarmtmp
